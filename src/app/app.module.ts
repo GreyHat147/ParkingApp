@@ -32,7 +32,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environments';
-
+import { TabsPage } from '../pages/tabs/tabs';
+import { HistoryPage } from '../pages/history/history';
 
 // import services
 // end import services
@@ -53,7 +54,9 @@ import { environment } from '../environments/environments';
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    TabsPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,9 @@ import { environment } from '../environments/environments';
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    TabsPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,

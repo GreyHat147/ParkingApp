@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {App, NavController} from "ionic-angular";
 import {LoginPage} from "../login/login";
+import { Firebase } from './../../services/firebase';
 
 
 @Component({
@@ -9,11 +10,12 @@ import {LoginPage} from "../login/login";
 })
 export class SettingsPage {
 
-  constructor(public nav: NavController) {
+  constructor(public nav: NavController, public firebase: Firebase, public app: App) {
   }
 
   // logout
   logout() {
-    this.nav.setRoot(LoginPage);
+    this.firebase.logout();
+    this.app.getRootNav().setRoot(LoginPage);
   }
 }
