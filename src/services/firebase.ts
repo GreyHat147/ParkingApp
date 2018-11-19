@@ -48,6 +48,29 @@ export class Firebase {
         this.afAuth.auth.signOut();
     }
 
+    getAuthInfoUser() {
+        return this.afAuth.auth.currentUser;
+    }
+
+    getUserDb(idUser) {
+        console.log(idUser)
+        return this.afs
+        .collection('users')
+        .doc(idUser)
+        .valueChanges();
+    }
+
+    updateUser(idUser: string, data: any) {
+        return new Promise((resolve, reject) => {
+            this.afs
+            .collection('users')
+            .doc(idUser)
+            .update(data)
+            .then(() => resolve())
+            .catch((error) => reject(error));
+        });
+    }
+
     private validateError(error) {
         let msg = "";
         switch(error.code) {

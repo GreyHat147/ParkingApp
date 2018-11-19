@@ -19,11 +19,5 @@ export class TabsPage {
       /* this.navCtrl.setRoot(HomePage); */
   }
 
-  ionViewDidEnter(){
-    let tab = this.tabRef.getSelected();
-    console.log(tab)
-
-  }
-
 }
 
