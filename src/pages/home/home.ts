@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import {Component} from "@angular/core";
 import {NavController, PopoverController} from "ionic-angular";
 import {Storage} from '@ionic/storage';
@@ -6,6 +7,7 @@ import {NotificationsPage} from "../notifications/notifications";
 import {SettingsPage} from "../settings/settings";
 import {TripsPage} from "../trips/trips";
 import {SearchLocationPage} from "../search-location/search-location";
+import { Firebase } from './../../services/firebase';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class HomePage {
     date: new Date().toISOString()
   }
 
-  constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
+  constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController, public firebase: Firebase) {
   }
 
   ionViewWillEnter() {
@@ -35,6 +37,11 @@ export class HomePage {
     }).catch((err) => {
       console.log(err)
     });
+  }
+
+  logout() {
+    this.firebase.logout();
+    this.nav.push(LoginPage);
   }
 
   // go to result page

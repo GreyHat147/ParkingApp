@@ -1,17 +1,11 @@
 <!-- -->
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar color="primary">  
     <ion-title>
-      <strong>Ionic 3</strong> Start Theme
+      <strong>ParkingApps</strong>
     </ion-title>
     <ion-buttons end>
-      <button ion-button tappable (click)="presentNotifications($event)">
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-      <button ion-button tappable (click)="goToAccount()">
+      <button ion-button tappable (click)="logout()">
         <ion-icon name="cog"></ion-icon>
       </button>
     </ion-buttons>
@@ -32,7 +26,7 @@
   </ion-card>
 
   <button ion-button icon-start block no-margin color="primary" class="round" tappable (click)="doSearch()">
-    <ion-icon name="search"></ion-icon> Search
+    <ion-icon name="search"></ion-icon> Search baby
   </button>
 
 </ion-content>

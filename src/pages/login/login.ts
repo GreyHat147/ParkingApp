@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Firebase } from "../../services/firebase";
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'page-login',
@@ -22,8 +23,10 @@ export class LoginPage {
               public menu: MenuController, 
               public toastCtrl: ToastController, 
               public firebase: Firebase, 
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              public afAuth: AngularFireAuth) {
     this.menu.swipeEnable(false);
+    this.onAuthStateChanged();
   }
 
   // go to register page
@@ -41,7 +44,7 @@ export class LoginPage {
       this.firebase.login(email, password)
       .then((result) => {
         this.loading = false;
-        this.nav.setRoot(HomePage);
+        this.goToHome();
         console.log(result);
       })
       .catch((error) => {
@@ -50,6 +53,20 @@ export class LoginPage {
         console.error(error);
       });
     }
+  }
+
+  onAuthStateChanged() {
+    return this.afAuth.auth.onAuthStateChanged((user) => {
+        console.log('user', user)
+        if (user) {
+          // User is signed in.
+          this.goToHome();
+        }
+    });
+}
+
+  goToHome() {
+    this.nav.setRoot(HomePage);
   }
 
 

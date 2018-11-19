@@ -42,7 +42,11 @@ export class Firebase {
                 reject(error);
             });
         });
-    };
+    }
+
+    logout() {
+        this.afAuth.auth.signOut();
+    }
 
     private validateError(error) {
         let msg = "";
@@ -63,7 +67,7 @@ export class Firebase {
                 msg = "La contraseña es incorrecta";
                 break;    
             default:
-                msg = "A ocurrido un error inesperado";
+                msg = error;
         }
         return msg;
     }
