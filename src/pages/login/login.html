@@ -6,18 +6,18 @@
     <div padding-horizontal text-center class="animated fadeInDown">
       <div class="logo"></div>
       <h2 ion-text class="text-primary">
-        <strong>Ionic 3</strong> Start Theme
+        <strong>ParkingApp</strong>
       </h2>
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" [formGroup]="loginForm" (ngSubmit)="login()">
       <ion-item>
         <ion-label floating>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,47 +25,32 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Password
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
+
+      <div *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine" style="margin: 20px 0">
+          <div class="msgError" [hidden]="!loginForm.controls['email'].errors.email">El email es invalido</div>
+      </div>
+
+      <div *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine" style="margin: 20px 0">
+          <div class="msgError" [hidden]="!loginForm.controls['password'].errors.required">El password es requerido</div>
+      </div>
+
+      <div *ngIf="msgErrorSignIn" style="margin: 20px 0">
+          <div class="msgError">{{ msgErrorSignIn }}</div>
+      </div>
+
+      <div margin-top>
+        <button ion-button block color="dark" tappable type="submit" [disabled]="loginForm.invalid">
+          <span *ngIf="!loading">Login</span> 
+          <ion-spinner *ngIf="loading"></ion-spinner>
+        </button>
+      </div>
     </form>
-
-    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
-
-    <div>
-      <button ion-button icon-start block color="dark" tappable (click)="login()">
-        <ion-icon name="log-in"></ion-icon>
-        SIGN IN
-      </button>
-
-      <p text-center ion-text color="secondary">Or Sign in with:</p>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-facebook">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-twitter">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-gplus">
-              <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="secondary" tappable (click)="register()">New here? <strong>Sign up</strong></span>
+      <span ion-text color="secondary" tappable (click)="register()">Registrarse!</span>
     </div>
-
   </div>
 </ion-content>

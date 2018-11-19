@@ -3,6 +3,11 @@
 // --------------------------------------------------
 
 // global styles
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .primary-bg {
   background-color: color($colors, primary) !important;
 }
@@ -324,7 +329,7 @@ ion-navbar.no-border {
         height: 60px;
         margin: 20px auto 0;
         border-radius: 10%;
-        background: url("../assets/img/ionic3-ico.png") no-repeat;
+        background: url("../assets/img/logo.jpg") no-repeat;
         background-size: 100%;
       }
 
@@ -544,4 +549,13 @@ ion-icon[ng-reflect-disabled="true"] {
 
 .fadeInDown {
   animation-name: fadeInDown;
+}
+
+
+.msgError {
+  color: red;
+}
+
+.spinner-md-crescent circle {
+  stroke: #ffffff;
 }
