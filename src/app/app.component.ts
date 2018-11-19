@@ -8,7 +8,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { LocalWeatherPage } from "../pages/local-weather/local-weather";
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { TabsPage } from '../pages/tabs/tabs';
 export interface MenuItem {
     title: string;
     component: any;
@@ -30,7 +31,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public keyboard: Keyboard
+    public keyboard: Keyboard,
+    public afAuth: AngularFireAuth
   ) {
     this.initializeApp();
 
@@ -38,6 +40,8 @@ export class MyApp {
       {title: 'Home', component: HomePage, icon: 'home'},
       {title: 'Local Weather', component: LocalWeatherPage, icon: 'partly-sunny'}
     ];
+    
+    this.onAuthStateChanged();
   }
 
   initializeApp() {
@@ -66,5 +70,21 @@ export class MyApp {
   logout() {
     this.nav.setRoot(LoginPage);
   }
+
+  onAuthStateChanged() {
+      return this.afAuth.auth.onAuthStateChanged((user) => {
+          console.log('user', user)
+          if (user) {
+            // User is signed in.
+            this.goTabsPage();
+          }
+      });
+  } 
+
+  goTabsPage() {
+    this.nav.setRoot(TabsPage);
+  }
+
+
 
 }

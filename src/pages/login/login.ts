@@ -3,7 +3,6 @@ import {NavController, AlertController, ToastController, MenuController} from "i
 import {RegisterPage} from "../register/register";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Firebase } from "../../services/firebase";
-import { AngularFireAuth } from '@angular/fire/auth';
 import { TabsPage } from "../tabs/tabs";
 
 @Component({
@@ -23,10 +22,9 @@ export class LoginPage {
               public menu: MenuController, 
               public toastCtrl: ToastController, 
               public firebase: Firebase, 
-              private fb: FormBuilder,
-              public afAuth: AngularFireAuth) {
+              private fb: FormBuilder) {
     this.menu.swipeEnable(false);
-    this.onAuthStateChanged();
+
   }
 
   // go to register page
@@ -54,16 +52,6 @@ export class LoginPage {
       });
     }
   }
-
-  onAuthStateChanged() {
-    return this.afAuth.auth.onAuthStateChanged((user) => {
-        console.log('user', user)
-        if (user) {
-          // User is signed in.
-          this.goTabsPage();
-        }
-    });
-}
 
   goTabsPage() {
     this.nav.setRoot(TabsPage);
