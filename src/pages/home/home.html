@@ -11,7 +11,23 @@
 </ion-header>
 
 <ion-content padding class="animated fadeIn common-bg">
+    <ion-card>
+        <ion-card-header>
+          Estadía
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+              <ion-label>Hora de Inicio:</ion-label>
+              <ion-input readonly></ion-input>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
 
+    <ion-card>
+        <ion-card-content>
+            <!-- Add card content here! -->
+        </ion-card-content>
+    </ion-card>
 
-
+    <button ion-button color="primary" full round tappable (click)="startStay()">Iniciar Estadía</button>
 </ion-content>

@@ -559,3 +559,8 @@ ion-icon[ng-reflect-disabled="true"] {
 .spinner-md-crescent circle {
   stroke: #ffffff;
 }
+
+.transparent-body {
+  background: none transparent !important;
+  opacity: 0 !important;
+}

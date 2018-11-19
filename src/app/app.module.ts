@@ -7,6 +7,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from '@ionic-native/keyboard';
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 //Services
 import {ActivityService} from "../services/activity-service";
 import {TripService} from "../services/trip-service";
@@ -98,6 +101,8 @@ import { HistoryPage } from '../pages/history/history';
     TripService,
     Firebase,
     WeatherProvider,
+    QRScanner,
+    BarcodeScanner,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

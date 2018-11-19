@@ -1,20 +1,26 @@
 import { LoginPage } from './../login/login';
 import {Component} from "@angular/core";
-import {NavController, PopoverController} from "ionic-angular";
+import {NavController, Platform } from "ionic-angular";
 import {Storage} from '@ionic/storage';
 
-import {NotificationsPage} from "../notifications/notifications";
-import {SettingsPage} from "../settings/settings";
-import {TripsPage} from "../trips/trips";
-import {SearchLocationPage} from "../search-location/search-location";
-
+import { QRScanner, QRScannerStatus } from "@ionic-native/qr-scanner";
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 
 export class HomePage {
-
-  constructor( public nav: NavController) {
+  myCount = 0;
+  constructor( public nav: NavController, public plt: Platform, private barcodeScanner: BarcodeScanner, private qrScanner: QRScanner) {
   }
+
+  startStay() {
+    this.barcodeScanner.scan().then(barcodeData => {
+    console.log('Barcode data', barcodeData);
+    }).catch(err => {
+        console.log('Error', err);
+    });
+  }
+
 }
