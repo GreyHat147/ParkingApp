@@ -99,6 +99,21 @@ export class Firebase {
         }); 
     }
 
+    createPayment(data: any) {
+        return new Promise((resolve, reject) => {
+            this.afs
+            .collection('payments')
+            .add(data)
+            .then((response) => resolve(response))
+            .catch((error) => reject(error));
+        });
+    }
+
+    getPaymentsByUser(id_user) {
+        let paymentsRef: any = this.afs.collection('payments');
+        return paymentsRef.where('id_user', '==', id_user);
+    }
+
     private validateError(error) {
         let msg = "";
         switch(error.code) {

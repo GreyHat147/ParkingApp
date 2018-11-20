@@ -5,6 +5,7 @@ import { Firebase } from './../../services/firebase';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Storage } from '@ionic/storage';
 import { PaymentPage } from "../payment/payment";
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -23,12 +24,17 @@ export class HomePage {
     pay: false,
     rate_applied: null,
     short_start_date: null,
-    short_end_date: null
+    short_end_date: null,
+    payed: false
   };
   constructor( public nav: NavController, public plt: Platform, public firebase: Firebase, private barcodeScanner: BarcodeScanner, private storage: Storage) {
     this.currentUser = this.firebase.getAuthInfoUser();
     this.stay.id_user = this.currentUser.uid;
     this.updateStay();
+  }
+
+  ionViewWillEnter() {
+   this.updateStay();
   }
 
   startStay() {
@@ -72,10 +78,36 @@ export class HomePage {
         console.log(idStay)
         this.firebase.getStay(idStay)
         .subscribe((stay: any) => {
+          if (stay.payed) {
+            this.stay = {
+              idStay: null,
+              id_user: null,
+              start_date: null,
+              end_date: null,
+              start: true,
+              end: false,
+              pay: false,
+              rate_applied: null,
+              short_start_date: null,
+              short_end_date: null,
+              payed: false
+            };
+          } else {
           this.stay = stay;
           this.stay.idStay = idStay;
           console.log('stay', this.stay)
+          }
         });
+      } else {
+        setTimeout(() => {
+        this.stay.rate_applied = null;
+        this.stay.short_start_date = null;
+        this.stay.short_end_date = null;
+        this.stay.start = true;
+        this.stay.end = false;
+        this.stay.pay = false;
+        this.stay.idStay = null;
+        }, 1000);
       }
     })
   }
@@ -103,7 +135,8 @@ export class HomePage {
   }
 
   payStay() {
-   this.nav.push(PaymentPage); 
+  //  this.nav.push(PaymentPage); 
+   this.nav.parent.select(1);
   }
 
   existsStay() {
