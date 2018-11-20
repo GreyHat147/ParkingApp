@@ -17,17 +17,31 @@
         </ion-card-header>
         <ion-card-content>
             <ion-item>
+              <ion-label>Tarifa por minuto:</ion-label>
+              <ion-input readonly value="$500"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tarifa aplicada:</ion-label>
+                <ion-input readonly [(ngModel)]="stay.rate_applied" name="rate_applied"></ion-input>
+            </ion-item>
+            <ion-item>
               <ion-label>Hora de Inicio:</ion-label>
-              <ion-input readonly></ion-input>
+              <ion-input readonly [(ngModel)]="stay.short_start_date" name="short_start_date"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Hora de Finalización:</ion-label>
+              <ion-input readonly [(ngModel)]="stay.short_end_date" name="short_end_date"></ion-input>
             </ion-item>
         </ion-card-content>
     </ion-card>
-
-    <ion-card>
-        <ion-card-content>
-            <!-- Add card content here! -->
-        </ion-card-content>
-    </ion-card>
-
-    <button ion-button color="primary" full round tappable (click)="startStay()">Iniciar Estadía</button>
+    <div>
+      <button *ngIf="stay.start" style="margin: 25px 0" ion-button color="primary" full round tappable (click)="startStay()">Iniciar Estadía</button>
+      <button *ngIf="stay.end" style="margin: 25px 0" ion-button color="danger" full round tappable (click)="endStay()">Finalizar Estadía</button>
+    </div>
+    <div *ngIf="stay.pay">
+        <button ion-button color="light" full round tappable (click)="payStay()">
+            <ion-icon ios="ios-card" md="md-card" style="margin: 0 5px"></ion-icon>
+          Pagar
+        </button>
+    </div>
 </ion-content>

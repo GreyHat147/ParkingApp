@@ -71,6 +71,34 @@ export class Firebase {
         });
     }
 
+    getStay(idStay) {
+        return this.afs
+        .collection('stays')
+        .doc(idStay)
+        .valueChanges();
+    }
+
+    startStay(data: any) {
+        return new Promise((resolve, reject) => {
+            this.afs
+            .collection('stays')
+            .add(data)
+            .then((result) => resolve(result))
+            .catch((error) => reject(error));
+        });
+    }
+
+    updateStay(idStay, data) {
+        return new Promise((resolve, reject) => {
+            this.afs
+            .collection('stays')
+            .doc(idStay)
+            .update(data)
+            .then(() => resolve())
+            .catch((error) => reject(error));
+        }); 
+    }
+
     private validateError(error) {
         let msg = "";
         switch(error.code) {

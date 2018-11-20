@@ -73,7 +73,6 @@ export class MyApp {
 
   onAuthStateChanged() {
       return this.afAuth.auth.onAuthStateChanged((user) => {
-          console.log('user', user)
           if (user) {
             // User is signed in.
             this.goTabsPage();
