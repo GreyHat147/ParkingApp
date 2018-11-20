@@ -36,6 +36,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environments';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HistoryPage } from '../pages/history/history';
+import { PaymentPage } from '../pages/payment/payment';
 
 // import services
 // end import services
@@ -58,7 +59,8 @@ import { HistoryPage } from '../pages/history/history';
     TripDetailPage,
     TripsPage,
     TabsPage,
-    HistoryPage
+    HistoryPage,
+    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { HistoryPage } from '../pages/history/history';
     TripDetailPage,
     TripsPage,
     TabsPage,
-    HistoryPage
+    HistoryPage,
+    PaymentPage
   ],
   providers: [
     StatusBar,

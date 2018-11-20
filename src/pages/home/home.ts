@@ -4,6 +4,7 @@ import {NavController, Platform } from "ionic-angular";
 import { Firebase } from './../../services/firebase';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Storage } from '@ionic/storage';
+import { PaymentPage } from "../payment/payment";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -102,7 +103,7 @@ export class HomePage {
   }
 
   payStay() {
-   /*  this.nav.push(); */
+   this.nav.push(PaymentPage); 
   }
 
   existsStay() {
