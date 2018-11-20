@@ -22,7 +22,8 @@ export class PaymentPage {
       month: null,
       year: null, 
       cvv: null
-    }
+    },
+    id_user: null
   };
   constructor( public nav: NavController, public plt: Platform, public firebase: Firebase, private storage: Storage, private toastCtrl: ToastController) {
     this.existsStay()
@@ -72,6 +73,7 @@ export class PaymentPage {
 
   pay() {
     console.log(this.payment)
+    this.payment.id_user = this.payment.stay.id_user;
     this.firebase.createPayment(this.payment)
     .then((payed) => {
       return (payed) ? this.firebase.updateStay(this.payment.stay.idStay, { payed: true }) : Promise.resolve(true);

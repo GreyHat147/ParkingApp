@@ -111,7 +111,7 @@ export class Firebase {
 
     getPaymentsByUser(id_user) {
         let paymentsRef: any = this.afs.collection('payments');
-        return paymentsRef.where('id_user', '==', id_user);
+        return this.afs.collection('payments', paymentsRef => paymentsRef.where('id_user', '==', id_user)).valueChanges();
     }
 
     private validateError(error) {

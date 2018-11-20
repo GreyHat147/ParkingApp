@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="primary">  
+        <ion-title>
+        <strong>
+            <ion-icon ios="ios-car" md="md-car"></ion-icon>
+            ParkingApp
+        </strong>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn common-bg">
+    <ion-card *ngFor="let payment of payments">
+        <ion-item>
+            <ion-icon name="ios-pricetag" item-start large></ion-icon>
+            <h2>Id Estadía: </h2>
+            <p>{{ payment.stay.idStay }}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="ios-calendar" item-start large></ion-icon>
+            <h2>Fecha de inicio:</h2>
+            <p>{{ payment.stay.short_start_date }}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="ios-calendar" item-start large></ion-icon>
+            <h2>Fecha de finalización: </h2>
+            <p>{{ payment.stay.short_end_date }}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="ios-cash" item-start large></ion-icon>
+            <h2>Tarifa aplicada: </h2>
+            <p>{{ payment.stay.rate_applied }}</p>
+        </ion-item>
+    </ion-card>
+</ion-content>
+      
