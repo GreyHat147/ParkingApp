@@ -38,25 +38,7 @@ export class HomePage {
   }
 
   startStay() {
-    let startDate = new Date();
-    this.stay.start_date = startDate.getTime();
-    this.stay.short_start_date = this.dateToHoursMinutes(startDate);
-    this.stay.start = false;
-    this.stay.end = true;
-    this.stay.pay = false;
-    this.stay.rate_applied = 0;
-    this.firebase.startStay(this.stay)
-    .then((stay: any) => {
-      console.log(stay)
-      this.storage.set('idCurrentStay', stay.id);
-      setTimeout(() => {
-        this.updateStay();
-      }, 2000);
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-    /*this.barcodeScanner.scan()
+    this.barcodeScanner.scan()
     .then(barcodeData => {
 
       if (barcodeData.cancelled) {
@@ -64,10 +46,29 @@ export class HomePage {
         return false;
       }
 
-      this.firebase.startStay()
+      let startDate = new Date();
+      this.stay.start_date = startDate.getTime();
+      this.stay.short_start_date = this.dateToHoursMinutes(startDate);
+      this.stay.start = false;
+      this.stay.end = true;
+      this.stay.pay = false;
+      this.stay.rate_applied = 0;
+      this.firebase.startStay(this.stay)
+      .then((stay: any) => {
+        console.log(stay)
+        this.storage.set('idCurrentStay', stay.id);
+        setTimeout(() => {
+          this.updateStay();
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+
+      
     }).catch(err => {
         console.log('Error', err);
-    });*/
+    });
   }
 
   updateStay() {
